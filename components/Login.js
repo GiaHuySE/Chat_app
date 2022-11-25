@@ -52,47 +52,6 @@ const Login = (props) => {
     Alert.alert(title, message);
   };
 
-  const login = () => {
-    if (isUserCredentialsValid(email, password)) {
-      setIsLoading(true);
-      // if the user's credentials are valid, call Firebase authentication service.
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          const firebaseUid = userCredential.user.uid;
-          // login cometchat.
-          cometChat
-            .login(firebaseUid, `${cometChatConfig.cometChatAuthKey}`)
-            .then(
-              (user) => {
-                // User loged in successfully.
-                // save authenticated user to local storage.
-                AsyncStorage.setItem("auth", JSON.stringify(user));
-                // save authenticated user to context.
-                setUser(user);
-                // navigate to the home page
-                navigation.navigate("Home");
-              },
-              (error) => {
-                // User login failed, check error and take appropriate action.
-                setIsLoading(false);
-                showMessage(
-                  "Error",
-                  "Your username or password is not correct"
-                );
-              }
-            );
-        })
-        .catch((error) => {
-          // hide loading indicator.
-          setIsLoading(false);
-          alert(`Your user's name or password is not correct`);
-        });
-    } else {
-      setIsLoading(false);
-      showMessage("Error", "Your username or password is not correct");
-    }
-  };
-
   const register = () => {
     navigation.navigate("SignUp");
   };
@@ -131,5 +90,50 @@ const Login = (props) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#fff",
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+  },
+  input: {
+    borderColor: "#ccc",
+    borderRadius: 8,
+    borderWidth: 1,
+    fontSize: 16,
+    marginHorizontal: 24,
+    marginVertical: 8,
+    padding: 12,
+  },
+  login: {
+    backgroundColor: "#3B82F6",
+    borderRadius: 8,
+    fontSize: 16,
+    marginHorizontal: 24,
+    marginVertical: 8,
+    padding: 16,
+  },
+  loginLabel: {
+    color: "#fff",
+    fontWeight: "bold",
+    textAlign: "center",
+    textTransform: "uppercase",
+  },
+  register: {
+    backgroundColor: "#fff",
+    fontSize: 16,
+    marginHorizontal: 24,
+    marginVertical: 8,
+    padding: 16,
+  },
+  registerLabel: {
+    color: "#000",
+    fontWeight: "bold",
+    textAlign: "center",
+    textTransform: "uppercase",
+  },
+});
 
 export default Login;
