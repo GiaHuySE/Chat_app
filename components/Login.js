@@ -132,49 +132,4 @@ const Login = (props) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#fff",
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
-  },
-  input: {
-    borderColor: "#ccc",
-    borderRadius: 8,
-    borderWidth: 1,
-    fontSize: 16,
-    marginHorizontal: 24,
-    marginVertical: 8,
-    padding: 12,
-  },
-  login: {
-    backgroundColor: "#3B82F6",
-    borderRadius: 8,
-    fontSize: 16,
-    marginHorizontal: 24,
-    marginVertical: 8,
-    padding: 16,
-  },
-  loginLabel: {
-    color: "#fff",
-    fontWeight: "bold",
-    textAlign: "center",
-    textTransform: "uppercase",
-  },
-  register: {
-    backgroundColor: "#fff",
-    fontSize: 16,
-    marginHorizontal: 24,
-    marginVertical: 8,
-    padding: 16,
-  },
-  registerLabel: {
-    color: "#000",
-    fontWeight: "bold",
-    textAlign: "center",
-    textTransform: "uppercase",
-  },
-});
-
 export default Login;
